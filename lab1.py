@@ -1,7 +1,18 @@
 import math
 ### Класс для дробей
 class fractions:
-    
+    def proverka_two_minus(self, strochka):
+        first, second = self.convert_nubers(strochka)
+        first=str(first)
+        second=str(second)
+        if ("-" in first) and ("-" in second):
+            first=first[1:len(first)]
+            second=second[1:len(second)]
+            res = str(first)+'/'+str(second)
+            return res
+        else:
+            res = str(first)+'/'+str(second)
+            return res
     def convert_nubers(self, res):
         index1 = res.find("/")
         first_chisl = int(res[0:index1] )
@@ -20,6 +31,7 @@ class fractions:
         else:
             k = math.gcd(first_chisl, first_zn) 
             res = str(int(first_chisl//k))+'/'+str(int(first_zn//k))
+            res=self.proverka_two_minus(res)
             return res
     def sum_num(self, a, b):
         a=self.add_one(a)
