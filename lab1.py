@@ -1,11 +1,13 @@
+import math
 ### Класс для дробей
 class fractions:
+    
     def convert_nubers(self, res):
         index1 = res.find("/")
         first_chisl = int(res[0:index1] )
         first_zn =int(res[index1+1:len(res)])
         return first_chisl, first_zn
-    def add_one(self, num):
+    def add_one(self, num: str):
         if '/' in num:
             return num
         else:
@@ -16,32 +18,8 @@ class fractions:
         if(first_chisl%first_zn == 0):
             return str(int(first_chisl/first_zn))
         else:
-
-            while (first_chisl%2==0 and first_zn%2==0):
-                first_chisl/=2
-                first_zn/=2
-            while(first_chisl%3==0 and first_zn%3==0):
-                first_chisl/=3
-                first_zn/=3
-            while(first_chisl%5==0 and first_zn%5==0):
-                first_chisl/=5
-                first_zn/=5
-            while(first_chisl%7==0 and first_zn%7==0):
-                first_chisl/=7
-                first_zn/=7
-            while(first_chisl%11==0 and first_zn%11==0):
-                first_chisl/=11
-                first_zn/=11
-            while(first_chisl%13==0 and first_zn%13==0):
-                first_chisl/=13
-                first_zn/=13
-            while(first_chisl%347==0 and first_zn%347==0):
-                first_chisl/=347
-                first_zn/=347
-            while(first_chisl%541==0 and first_zn%541==0):
-                first_chisl/=541
-                first_zn/=541  
-            res = str(int(first_chisl))+'/'+str(int(first_zn))
+            k = math.gcd(first_chisl, first_zn) 
+            res = str(int(first_chisl//k))+'/'+str(int(first_zn//k))
             return res
     def sum_num(self, a, b):
         a=self.add_one(a)
@@ -118,8 +96,8 @@ def guse(matr, row, column, row_work):
         delen =matrix[row_work][column_work]
         for nums in range(row_work, column):
             matr[row_work][nums] = lab1.division(matr[row_work][nums],delen)
-        for el in matrix:
-            print(el)
+        # for el in matrix:
+        #     print(el)
         for i in range(row_work+1, row):
             mnoj= matr[i][row_work]   
             for j in range(row_work, column):
@@ -130,10 +108,10 @@ def guse(matr, row, column, row_work):
             for j in range(row_work, column):
                 param = lab1.multiplication(mnoj, matr[row_work][j])
                 matr[i][j] = lab1.subtraction(matr[i][j], param)
-        print()
-        for el in matrix:
-            print(el)
-        print()
+        # print()
+        # for el in matrix:
+        #     print(el)
+        # print()
         row_work+=1
         column_work+=1
     return matr
