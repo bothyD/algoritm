@@ -65,43 +65,40 @@ elif row!=(column-1):
         print_mas(matrix,0,0, column,row)
     else:
         print_mas(matrix,0,0, column,row)
+    c=math.factorial(column-1)/ (math.factorial(row) *  math.factorial(column-1-row))
+    print("Кол-во базисных решений: ", int(c))
+    new_matr = [[str(0) for j in range(0,row+1)] for i in range(0,row)]
+    matr_basis = [[str(0) for j in range(0,column-1)] for i in range(0,int(c))]
+    matr_basis_str=0
+    for stroka in comb(column-1, row):       
+            print(stroka)
+            for i in range(0, row):
+                for j in range(0, row):
+                    column_new=stroka[j]
+                    new_matr[i][j]=matrix[i][column_new]
+                new_matr[i][row]=matrix[i][column-1]
+            for el in new_matr:
+                print(el)
+            print()        
+            new_matr =guse(new_matr, row, row+1, 0)
+            for el in new_matr:
+                print(el)
+            print()
+            print_mas(new_matr,0,0, row+1,row)
+            for i in range(row):
+
+                matr_basis[matr_basis_str][stroka[i]]=new_matr[i][row]
+            matr_basis_str+=1
+            #print(new_matr)
+    print("\n Базисные решения: ")
+    new_i=len(matr_basis[0])
+    for el in range(0, len(matr_basis)):
+        for el_i in range(0,new_i):
+            print("x",el_i+1," = ", matr_basis[el][el_i])
+        print()
+
     
 else:
     print_mas(matrix,0,0, column,row)
     print("Единственное решение")
 ################
-c=math.factorial(column-1)/ (math.factorial(row) *  math.factorial(column-1-row))
-print("Кол-во базисных решений: ", int(c))
-new_matr = [[str(0) for j in range(0,row+1)] for i in range(0,row)]
-matr_basis = [[str(0) for j in range(0,column-1)] for i in range(0,int(c))]
-
-matr_basis_str=0
-for stroka in comb(column-1, row):
-        
-        print(stroka)
-        for i in range(0, row):
-            for j in range(0, row):
-                column_new=stroka[j]
-                new_matr[i][j]=matrix[i][column_new]
-            new_matr[i][row]=matrix[i][column-1]
-        for el in new_matr:
-            print(el)
-        print()
-        
-        
-        new_matr =guse(new_matr, row, row+1, 0)
-        for el in new_matr:
-            print(el)
-        print()
-        print_mas(new_matr,0,0, row+1,row)
-        for i in range(row):
-
-            matr_basis[matr_basis_str][stroka[i]]=new_matr[i][row]
-        matr_basis_str+=1
-        #print(new_matr)
-print("\n Базисные решения: ")
-new_i=len(matr_basis[0])
-for el in range(0, len(matr_basis)):
-    for el_i in range(0,new_i):
-        print("x",el_i+1," = ", matr_basis[el][el_i])
-    print()

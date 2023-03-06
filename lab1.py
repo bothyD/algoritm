@@ -96,8 +96,8 @@ def guse(matr, row, column, row_work):
         delen =matrix[row_work][column_work]
         for nums in range(row_work, column):
             matr[row_work][nums] = lab1.division(matr[row_work][nums],delen)
-        for el in matrix:
-            print(el)
+        # for el in matrix:
+        #     print(el)
         for i in range(row_work+1, row):
             mnoj= matr[i][column_work]   
             for j in range(row_work, column):
@@ -108,10 +108,10 @@ def guse(matr, row, column, row_work):
             for j in range(row_work, column):
                 param = lab1.multiplication(mnoj, matr[row_work][j])
                 matr[i][j] = lab1.subtraction(matr[i][j], param)
-        print()
-        for el in matrix:
-            print(el)
-        print()
+        # print()
+        # for el in matrix:
+        #     print(el)
+        # print()
         row_work+=1
         column_work+=1
     return matr
