@@ -170,7 +170,7 @@ def prowerka_minus(num):
         num="-"+num
     return num
 ### заполнение массива
-with open('matrix.txt') as f:
+with open('matr.txt') as f:
     matrix = [list(map(str, row.split())) for row in f.readlines()]
 ######################
 row = len(matrix)
